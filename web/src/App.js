@@ -1,13 +1,22 @@
-import React from 'react';
-import Header from './Header'
+import React, { useState,  } from 'react';
 
-// Componente
-// Estado
-// Propriedade
+// Componente -> Bloco isolado de HTML, CSS e JS o qual não interfere no restante da aplicação.
+// Propriedade -> Informações que um componente PAI passa para o componente FILHO
+// Estado -> Informações mantidas pelo componente (Lembrar: Imutabilidade)
 
 function App() {
+  
   return (
-    <Header />
+    <>
+      <div id="app">
+        <aside>
+
+        </aside>
+        <main>
+          
+        </main>
+      </div>
+    </>
   );
 }
 
