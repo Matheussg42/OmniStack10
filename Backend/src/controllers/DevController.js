@@ -42,19 +42,35 @@ module.exports = {
 
         return response.json(dev);
     },
+
     async update(request, response) {
-        const { github_username, techs, latitude, longitude } = request.body;
+        const { name, bio, techs, latitude, longitude } = request.body;
         const _id = request.params.id;
-        const dev = await module.exports.findDev(_id);
-        console.log(dev);
+        const techsArray = parseStringAsArray(techs);
+        const location = {
+            type: 'Point',
+            coordinates: [longitude, latitude],
+        }
+        const dev = {
+            name, 
+            bio, 
+            techsArray, 
+            location
+        };
+
+        Dev.findByIdAndUpdate(_id, dev, { new: true, useFindAndModify: false }, (err, user) => {
+            if (err) return response.status(500).send(err);
+            return response.send(user);
+        })
+
     },
 
-    findDev: async function(_id) {
-        const dev = Dev.findById(_id, function (err, user) { 
-            return user;
-        });
+    async findDev(request, response) {
+        const _id = request.params.id;
 
-        return dev;
+        Dev.findById(_id, function (err, user) { 
+            return response.send(user);
+        });
     },
 
     async destroy(){
