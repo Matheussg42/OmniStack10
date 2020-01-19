@@ -1,6 +1,7 @@
 const axios = require('axios');
 const Dev = require('../models/Dev');
 const parseStringAsArray = require('../utils/parseStringAsArray');
+const { findConnections, sendMessage } = require('../websocket');
 
 module.exports = {
     async index(request, response){
@@ -31,14 +32,31 @@ module.exports = {
                 techs: techsArray,
                 location
             });
+
+            const sendSocketMessageTo = findConnections(
+                {latitude, longitude}, techsArray
+            )
+
+            sendMessage(sendSocketMessageTo, 'new-dev', dev);
         }
 
         return response.json(dev);
     },
-    async update(){
-        // TODO
-        // Atualizar Tecnologias
+    async update(request, response) {
+        const { github_username, techs, latitude, longitude } = request.body;
+        const _id = request.params.id;
+        const dev = await module.exports.findDev(_id);
+        console.log(dev);
     },
+
+    findDev: async function(_id) {
+        const dev = Dev.findById(_id, function (err, user) { 
+            return user;
+        });
+
+        return dev;
+    },
+
     async destroy(){
         // TODO
         // Deletar
