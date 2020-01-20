@@ -1,14 +1,20 @@
 import React from "react";
+import Edit from '@material-ui/icons/Edit';
 
 import "./styles.css";
 
-function DevItem({ dev }) {
+function DevItem({ dev, form }) {
+
+  function updateForm() {
+    form();
+  }
+
   return (
     <li className="dev-item">
       <header>
         <img src={dev.avatar_url} alt={dev.name} />
         <div className="user-info">
-          <strong>{dev.name}</strong>
+          <strong>{dev.name} - <Edit onClick={updateForm} /></strong> 
           <span>{dev.techs.join(", ")}</span>
         </div>
       </header>
