@@ -3,10 +3,11 @@ import Edit from '@material-ui/icons/Edit';
 
 import "./styles.css";
 
-function DevItem({ dev, form }) {
+function DevItem({ dev, changeFormToUpdate }) {
 
-  function updateForm() {
-    form();
+  function updateForm(e) {
+    e.preventDefault();
+    changeFormToUpdate({dev});
   }
 
   return (
@@ -14,13 +15,16 @@ function DevItem({ dev, form }) {
       <header>
         <img src={dev.avatar_url} alt={dev.name} />
         <div className="user-info">
-          <strong>{dev.name} - <Edit onClick={updateForm} /></strong> 
+          <strong>{dev.name}</strong> 
           <span>{dev.techs.join(", ")}</span>
         </div>
       </header>
       <p>{dev.bio}</p>
-      <a href={`https://github.com/${dev.github_username}`}>
+      <a className="btn" href={`https://github.com/${dev.github_username}`}>
         Acessar perfil no Github
+      </a>
+      <a href="#" className="btn" onClick={updateForm}>
+        Editar Cadastro
       </a>
     </li>
   );

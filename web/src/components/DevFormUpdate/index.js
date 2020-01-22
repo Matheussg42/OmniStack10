@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 
-function DevForm({ onSubmit }) {
-  const [github_username, setGithubUsername] = useState("");
+function DevForm({ devUpdate, onSubmit }) {
+  const [name, setName] = useState("");
+  const [bio, setBio] = useState("");
   const [techs, setTechs] = useState("");
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
-
   
   useEffect(() => {
+    console.log(devUpdate)
     navigator.geolocation.getCurrentPosition(
       position => {
         const { latitude, longitude } = position.coords;
@@ -28,26 +29,39 @@ function DevForm({ onSubmit }) {
     e.preventDefault();
 
     await onSubmit({
-      github_username,
+      name,
+      bio,
       techs,
       latitude,
       longitude
     });
 
-    setGithubUsername("");
+    setName("");
+    setBio("");
     setTechs("");
   }
 
   return (
     <form onSubmit={handleSubmit}>
       <div className="input-block">
-        <label htmlFor="github_username">Nome</label>
+        <label htmlFor="name">Nome</label>
         <input
-          name="github_username"
-          id="github_username"
+          name="name"
+          id="name"
           required
-          value={github_username}
-          onChange={e => setGithubUsername(e.target.value)}
+          value={devUpdate.name}
+          onChange={e => setName(e.target.value)}
+        />
+      </div>
+
+      <div className="input-block">
+        <label htmlFor="name">Bio</label>
+        <input
+          name="bio"
+          id="bio"
+          required
+          value={devUpdate.bio}
+          onChange={e => setBio(e.target.value)}
         />
       </div>
 
@@ -57,7 +71,7 @@ function DevForm({ onSubmit }) {
           name="techs"
           id="techs"
           required
-          value={techs}
+          value={devUpdate.techs}
           onChange={e => setTechs(e.target.value)}
         />
       </div>
@@ -70,7 +84,7 @@ function DevForm({ onSubmit }) {
             name="latitude"
             id="latitude"
             required
-            value={latitude}
+            value={devUpdate.location.coordinates[1]}
             onChange={e => setLatitude(e.target.value)}
           />
         </div>
@@ -82,7 +96,7 @@ function DevForm({ onSubmit }) {
             name="logitude"
             id="logitude"
             required
-            value={longitude}
+            value={devUpdate.location.coordinates[0]}
             onChange={e => setLongitude(e.target.value)}
           />
         </div>

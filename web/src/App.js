@@ -16,6 +16,7 @@ import DevItem from "./components/DevItem/index.js";
 
 function App() {
   const [devs, setDevs] = useState([]);
+  const [devUpdate, setDevUpdate] = useState([]);
   const [insertForm, setInsertForm] = useState(true);
   
   useEffect(() => {
@@ -33,21 +34,22 @@ function App() {
     setDevs([...devs, response.data]);
   }
 
-  async function changeForUpdateForm(){
+  async function changeFormToUpdate(devUpdate){
+    setDevUpdate(devUpdate.dev);
+    console.log(devUpdate.dev.location.coordinates)
     setInsertForm(false);
-    console.log('mudou');
   }
 
   return (
     <div id="app">
       <aside>
-        <strong>Cadastrar</strong>
-        {(!insertForm) ? <DevFormUpdate /> : <DevForm onSubmit={handleAddDev} />}
+  <strong>DevRadar - {console.log(devUpdate)}</strong>
+        {(!insertForm) ? <DevFormUpdate devUpdate={devUpdate} /> : <DevForm onSubmit={handleAddDev} />}
       </aside>
       <main>
         <ul>
           {devs.map(dev => (
-            <DevItem key={dev._id} dev={dev} form={changeForUpdateForm} />
+            <DevItem key={dev._id} dev={dev} changeFormToUpdate={changeFormToUpdate} />
           ))}
         </ul>
       </main>
