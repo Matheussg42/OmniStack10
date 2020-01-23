@@ -1,5 +1,4 @@
 import React from "react";
-import Edit from '@material-ui/icons/Edit';
 
 import "./styles.css";
 
@@ -23,9 +22,9 @@ function DevItem({ dev, changeFormToUpdate }) {
       <a className="btn" href={`https://github.com/${dev.github_username}`}>
         Acessar perfil no Github
       </a>
-      <a href="#" className="btn" onClick={updateForm}>
+      <p className="btn" onClick={updateForm}>
         Editar Cadastro
-      </a>
+      </p>
     </li>
   );
 }

@@ -46,7 +46,7 @@ module.exports = {
     async update(request, response) {
         const { name, bio, techs, latitude, longitude } = request.body;
         const _id = request.params.id;
-        const techsArray = parseStringAsArray(techs);
+        const techsArray = techs;
         const location = {
             type: 'Point',
             coordinates: [longitude, latitude],

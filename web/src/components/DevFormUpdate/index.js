@@ -1,55 +1,55 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-function DevForm({ devUpdate, onSubmit }) {
-  const [name, setName] = useState("");
-  const [bio, setBio] = useState("");
-  const [techs, setTechs] = useState("");
-  const [latitude, setLatitude] = useState("");
-  const [longitude, setLongitude] = useState("");
+function DevForm({ devUpdate, onSubmitUpdate, changeFormToCreate }) {
+  console.log(devUpdate)
+  const [_id, set_id] = useState(devUpdate._id);
+  const [name, setName] = useState(devUpdate.name);
+  const [github_username, setGithubUsername] = useState(devUpdate.github_username);
+  const [avatar_url, setAvatar_url] = useState(devUpdate.avatar_url);
+  const [bio, setBio] = useState(devUpdate.bio);
+  const [techs, setTechs] = useState(devUpdate.techs);
+  const [latitude, setLatitude] = useState(devUpdate.location.coordinates[1]);
+  const [longitude, setLongitude] = useState(devUpdate.location.coordinates[0]);
   
-  useEffect(() => {
-    console.log(devUpdate)
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        const { latitude, longitude } = position.coords;
-
-        setLatitude(latitude);
-        setLongitude(longitude);
-      },
-      error => {
-        console.log(error);
-      },
-      {
-        timeout: 30000
-      }
-    );
-  });
-
-  async function handleSubmit(e) {
+  async function handleSubmitUpdate(e) {
     e.preventDefault();
 
-    await onSubmit({
+    await changeFormToCreate();
+    await onSubmitUpdate({
+      _id,
       name,
       bio,
       techs,
+      github_username,
+      avatar_url,
       latitude,
       longitude
     });
 
+    set_id("");
+    setGithubUsername("");
+    setAvatar_url("");
     setName("");
     setBio("");
     setTechs("");
+    setLatitude("");
+    setLongitude("");
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmitUpdate}>
+     
+      <input name="_id" id="_id" type="hidden" value={_id} />
+      <input name="github_username" id="github_username" type="hidden" value={github_username} />
+      <input name="avatar_url" id="avatar_url" type="hidden" value={avatar_url} />
+
       <div className="input-block">
         <label htmlFor="name">Nome</label>
         <input
           name="name"
           id="name"
           required
-          value={devUpdate.name}
+          value={name}
           onChange={e => setName(e.target.value)}
         />
       </div>
@@ -60,7 +60,7 @@ function DevForm({ devUpdate, onSubmit }) {
           name="bio"
           id="bio"
           required
-          value={devUpdate.bio}
+          value={bio ? bio : ''}
           onChange={e => setBio(e.target.value)}
         />
       </div>
@@ -71,7 +71,7 @@ function DevForm({ devUpdate, onSubmit }) {
           name="techs"
           id="techs"
           required
-          value={devUpdate.techs}
+          value={techs}
           onChange={e => setTechs(e.target.value)}
         />
       </div>
@@ -84,7 +84,7 @@ function DevForm({ devUpdate, onSubmit }) {
             name="latitude"
             id="latitude"
             required
-            value={devUpdate.location.coordinates[1]}
+            value={latitude}
             onChange={e => setLatitude(e.target.value)}
           />
         </div>
@@ -96,7 +96,7 @@ function DevForm({ devUpdate, onSubmit }) {
             name="logitude"
             id="logitude"
             required
-            value={devUpdate.location.coordinates[0]}
+            value={longitude}
             onChange={e => setLongitude(e.target.value)}
           />
         </div>
