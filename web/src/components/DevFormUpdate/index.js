@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 function DevForm({ devUpdate, onSubmitUpdate, changeFormToCreate }) {
-  console.log(devUpdate)
   const [_id, set_id] = useState(devUpdate._id);
   const [name, setName] = useState(devUpdate.name);
   const [github_username, setGithubUsername] = useState(devUpdate.github_username);

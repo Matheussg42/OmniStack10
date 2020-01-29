@@ -5,7 +5,7 @@ import { requestPermissionsAsync, getCurrentPositionAsync } from 'expo-location'
 import { MaterialIcons } from '@expo/vector-icons';
 
 import api from '../services/api';
-import { connect, disconnect, subscribeToNewDevs } from '../services/socket';
+import { connect, disconnect, subscribeToNewDevs, subscribeToUpdateDevs } from '../services/socket';
 
 function Main({ navigation }){
     const [devs, setDevs] = useState([]);
@@ -36,6 +36,20 @@ function Main({ navigation }){
 
     useEffect(() => {
         subscribeToNewDevs(dev => setDevs([...devs, dev]));
+        subscribeToUpdateDevs(dev => {
+            var mapped = devs.map((elem) =>{
+                if(elem._id === dev._id){
+                    elem.name = dev.name;
+                    elem.bio = dev.bio;
+                    elem.techs = dev.techs;
+                    elem.location.coordinates[0] = dev.location.coordinates[0];
+                    elem.location.coordinates[1] = dev.location.coordinates[1];
+                }
+                return elem;
+            })
+
+            setDevs(mapped);
+        });
     }, [devs]);
 
     function setupWebsocket(){

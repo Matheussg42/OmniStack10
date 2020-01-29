@@ -44,17 +44,22 @@ module.exports = {
     },
 
     async update(request, response) {
-        const { name, bio, techs, latitude, longitude } = request.body;
+        let { name, bio, techs, latitude, longitude } = request.body;
         const _id = request.params.id;
-        const techsArray = techs;
         const location = {
             type: 'Point',
-            coordinates: [longitude, latitude],
+            coordinates: [Number(longitude), Number(latitude)],
         }
+        
+        if(typeof techs === 'object'){
+            techs = techs.join(", ")
+        }
+        
         const dev = {
-            name, 
+            _id,
+            name,
             bio, 
-            techsArray, 
+            techs: parseStringAsArray(techs),
             location
         };
 
@@ -63,6 +68,11 @@ module.exports = {
             return response.send(user);
         })
 
+        const sendSocketMessageTo = findConnections(
+            {latitude, longitude}, techs
+        )
+
+        sendMessage(sendSocketMessageTo, 'update-dev', dev);
     },
 
     async findDev(request, response) {

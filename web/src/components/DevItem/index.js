@@ -2,6 +2,8 @@ import React from "react";
 
 import "./styles.css";
 
+import parseStringAsArray from '../../utils/parseStringAsArray';
+
 function DevItem({ dev, changeFormToUpdate }) {
 
   function updateForm(e) {
@@ -15,7 +17,7 @@ function DevItem({ dev, changeFormToUpdate }) {
         <img src={dev.avatar_url} alt={dev.name} />
         <div className="user-info">
           <strong>{dev.name}</strong> 
-          <span>{dev.techs.join(", ")}</span>
+          <span>{((typeof dev.techs) == 'string') ? (parseStringAsArray(dev.techs)).join(", ") : dev.techs.join(", ")}</span>
         </div>
       </header>
       <p>{dev.bio}</p>
