@@ -6,7 +6,7 @@ COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
 
 RUN yarn install 
 
-COPY /. .
+COPY ./ .
 
 EXPOSE 3000
 

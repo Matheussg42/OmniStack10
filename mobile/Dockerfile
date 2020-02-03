@@ -4,15 +4,15 @@ WORKDIR /usr/src/app
 
 COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
 
-RUN npm install -g grunt-cli \
-    && npm install -g yarn \
-    && npm install -g create-react-native-app \
-    && npm install -g react-native-cli \ 
-    && npm install -g expo-cli 
+RUN apk add git \
+    && yarn install \
+    && yarn add global expo-cli  \
+    && apk add android-tools --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing
 
-RUN yarn install 
+# RUN apk add --no-cache git \
+#     && yarn install 
 
-COPY /. .
+COPY ./ .
 
 EXPOSE 19000
 
@@ -20,4 +20,11 @@ EXPOSE 19001
 
 EXPOSE 19002 
 
-CMD yarn start
+RUN rm -rf .expo && rm -rf .expo-shared 
+
+RUN yarn cache clean
+
+CMD adb connect 10.0.2.2 && \
+    yarn run android
+    # runs expo-cli start --android
+# CMD yarn start
