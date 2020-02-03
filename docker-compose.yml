@@ -1,0 +1,36 @@
+version: '2.1'
+
+services:
+  backend:
+    build:
+      context: ./Backend/
+    volumes:
+      - ./Backend/:/usr/app
+      - /usr/app/node_modules
+    environment:
+      BASE_URL: "http://localhost:3333"
+      MONGODB_CONNECTION_STRING: "mongodb+srv://matheus:omnistack@cluster0-9y8nv.mongodb.net/week10?retryWrites=true&w=majority"
+    ports:
+      - 3333:3333
+  web:
+    build:
+      context: ./web/
+    volumes:
+      - ./web/:/usr/app
+      - /usr/app/node_modules
+    depends_on:
+      - backend
+    ports:
+      - 3000:3000
+  mobile:
+    build:
+      context: ./mobile/
+    volumes:
+      - ./mobile/:/usr/app
+      - /usr/app/node_modules
+    depends_on:
+      - backend
+    ports:
+      - 19000:19000
+      - 19001:19001
+      - 19002:19002
