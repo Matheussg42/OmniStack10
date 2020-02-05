@@ -2,6 +2,7 @@
 
 Backend/node_modules/**/*
 Backend/.gitignore
+Backend/.env
 
 mobile/node_modules/**/*
 mobile/.expo/*
