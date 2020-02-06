@@ -83,8 +83,11 @@ module.exports = {
         });
     },
 
-    async destroy(){
-        // TODO
-        // Deletar
+    async destroy(request, response){
+        const _id = request.params.id;
+
+        Dev.findByIdAndDelete(_id, function (err, user) { 
+            return response.send(user);
+        });
     }
 }
