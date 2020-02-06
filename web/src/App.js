@@ -34,11 +34,23 @@ function App() {
     setDevs([...devs, response.data]);
   }
 
+  async function deleteUser(deleteUser){
+    await api.delete(`/devs/${deleteUser.dev._id}`);
+
+    let filtered = await devs.filter((elem) => {
+      return elem._id !== deleteUser.dev._id;
+    })
+
+    setDevs(filtered);
+  }
+
   async function changeFormToUpdate(devUpdate){
     await setInsertForm(true);
     setDevUpdate(devUpdate.dev);
     setInsertForm(false);
   }
+  
+
   async function changeFormToCreate(){
     setInsertForm(true);
   }
@@ -69,7 +81,7 @@ function App() {
       <main>
         <ul>
           {devs.map(dev => (
-            <DevItem key={dev._id} dev={dev} changeFormToUpdate={changeFormToUpdate} />
+            <DevItem key={dev._id} dev={dev} changeFormToUpdate={changeFormToUpdate} deleteUser={deleteUser} />
           ))}
         </ul>
       </main>

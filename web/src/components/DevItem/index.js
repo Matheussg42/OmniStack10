@@ -4,11 +4,16 @@ import "./styles.css";
 
 import parseStringAsArray from '../../utils/parseStringAsArray';
 
-function DevItem({ dev, changeFormToUpdate }) {
+function DevItem({ dev, changeFormToUpdate, deleteUser }) {
 
   function updateForm(e) {
     e.preventDefault();
     changeFormToUpdate({dev});
+  }
+
+  function deleteUserForm(e){
+    e.preventDefault();
+    deleteUser({dev});
   }
 
   return (
@@ -24,9 +29,15 @@ function DevItem({ dev, changeFormToUpdate }) {
       <a className="btn" href={`https://github.com/${dev.github_username}`}>
         Acessar perfil no Github
       </a>
-      <p className="btn" onClick={updateForm}>
-        Editar Cadastro
-      </p>
+      <div className="btn-group">
+        <span className="btn" onClick={updateForm}>
+          Editar Cadastro
+        </span>
+        <span className="btn delete" onClick={deleteUserForm}>
+          Deletar Dev
+        </span>
+      </div>
+      
     </li>
   );
 }

@@ -38,6 +38,7 @@ li.dev-item p {
   font-size: 14px;
   line-height: 20px;
   margin: 10px 0;
+  min-height: 70px;
 }
 
 li.dev-item a {
@@ -69,4 +70,22 @@ li.dev-item .btn{
 
 li.dev-item .btn:hover {
   background: #6931ca;
+  color: #fff;
+}
+
+li.dev-item .btn.delete{
+  background-color: #eb2f06;
+  color: #fff;
+}
+
+li.dev-item .btn.delete:hover {
+  background: #b71540;
+  color: #fff;
+}
+
+li.dev-item .btn-group{
+  display: grid;
+  grid-gap: 20px;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr;
 }
