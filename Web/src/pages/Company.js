@@ -64,6 +64,16 @@ function App() {
     setCompanies(mapped);
   }
 
+  async function deleteCompany(deleteCompany){
+    await api.delete(`/company/${deleteCompany.company._id}`);
+
+    let filtered = await companies.filter((elem) => {
+      return elem._id !== deleteCompany.company._id;
+    })
+
+    setCompanies(filtered);
+  }
+
 
   return (
     <div id="app">
@@ -84,7 +94,7 @@ function App() {
       <main>
         <ul>
           {companies.map(company => (
-            <CompanyItem key={company._id} changeFormToUpdate={changeFormToUpdate} company={company} />
+            <CompanyItem key={company._id} changeFormToUpdate={changeFormToUpdate} deleteCompany={deleteCompany} company={company} />
           ))}
         </ul>
       </main>

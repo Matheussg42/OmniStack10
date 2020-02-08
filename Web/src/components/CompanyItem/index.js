@@ -2,7 +2,7 @@ import React from "react";
 
 import "./styles.css";
 
-function CompanyItem({ company, changeItensToJobs, changeFormToUpdate, deleteUser }) {
+function CompanyItem({ company, changeItensToJobs, changeFormToUpdate, deleteCompany }) {
 
   // function showJobs(e) {
   //   e.preventDefault();
@@ -14,9 +14,9 @@ function CompanyItem({ company, changeItensToJobs, changeFormToUpdate, deleteUse
     changeFormToUpdate({company});
   }
 
-  function deleteUserForm(e){
+  function deleteCompanyForm(e){
     e.preventDefault();
-    deleteUser({company});
+    deleteCompany({company});
   }
 
   return (
@@ -36,7 +36,7 @@ function CompanyItem({ company, changeItensToJobs, changeFormToUpdate, deleteUse
         <span className="btn" onClick={updateForm}>
           Editar Cadastro
         </span>
-        <span className="btn delete" onClick={deleteUserForm}>
+        <span className="btn delete" onClick={deleteCompanyForm}>
           Deletar Empresa
         </span>
       </div>
