@@ -77,7 +77,7 @@ module.exports = {
         });
     },
 
-    async destroy(){
+    async destroy(request, response){
         const _id = request.params.id;
 
         Company.findByIdAndDelete(_id, function (err, comp) { 

@@ -15,6 +15,7 @@ routes.get('/company', CompanyController.index);
 routes.get('/company/:id', CompanyController.findCompany);
 routes.post('/company', CompanyController.store);
 routes.post('/company/:id', CompanyController.update);
+routes.delete('/company/:id', CompanyController.destroy)
 
 routes.get('/search', SearchController.index);
 
