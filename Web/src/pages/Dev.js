@@ -9,10 +9,13 @@ import "../Main.css";
 import DevForm from "../components/DevForm/index.js";
 import DevFormUpdate from "../components/DevFormUpdate/index.js";
 import DevItem from "../components/DevItem/index.js";
+import Header from "../components/Header/index";
 
 // Componente -> Bloco isolado de HTML, CSS e JS o qual não interfere no restante da aplicação.
 // Propriedade -> Informações que um componente PAI passa para o componente FILHO
 // Estado -> Informações mantidas pelo componente (Lembrar: Imutabilidade)
+
+
 
 function Dev() {
   const [devs, setDevs] = useState([]);
@@ -72,29 +75,24 @@ function Dev() {
     setDevs(mapped);
   }
 
+  
+
   return (
-    <div id="app">
-      <aside>
-        <strong>DevRadar</strong>
-        {/* <div className="option-group">
-          <span className="btn-item" onClick={setTypeDev}>
-            Dev
-          </span>
-          <span className="btn-item" onClick={setTypeJob}>
-            Empresa
-          </span>
-        </div> */}
-        
-        {!insertForm ? <DevFormUpdate devUpdate={devUpdate} onSubmitUpdate={handleUpdateDev} changeFormToCreate={changeFormToCreate} /> : <DevForm onSubmit={handleAddDev} />}
-        
-      </aside>
-      <main>
-        <ul>
-          {devs.map(dev => (
-            <DevItem key={dev._id} dev={dev} changeFormToUpdate={changeFormToUpdate} deleteUser={deleteUser} />
-          ))}
-        </ul>
-      </main>
+    <div>
+      <Header />
+      <div id="app">
+        <aside>
+          <strong>DevRadar</strong>
+          {!insertForm ? <DevFormUpdate devUpdate={devUpdate} onSubmitUpdate={handleUpdateDev} changeFormToCreate={changeFormToCreate} /> : <DevForm onSubmit={handleAddDev} />}
+        </aside>
+        <main>
+          <ul>
+            {devs.map(dev => (
+              <DevItem key={dev._id} dev={dev} changeFormToUpdate={changeFormToUpdate} deleteUser={deleteUser} />
+              ))}
+          </ul>
+        </main>
+      </div>
     </div>
   );
 }

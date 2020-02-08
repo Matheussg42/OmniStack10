@@ -10,6 +10,7 @@ import "../Main.css";
 import CompanyForm from "../components/CompanyForm/index.js";
 import CompanyFormUpdate from "../components/CompanyFormUpdate/index.js";
 import CompanyItem from "../components/CompanyItem/index.js";
+import Header from "../components/Header/index";
 
 // Componente -> Bloco isolado de HTML, CSS e JS o qual não interfere no restante da aplicação.
 // Propriedade -> Informações que um componente PAI passa para o componente FILHO
@@ -76,28 +77,21 @@ function App() {
 
 
   return (
-    <div id="app">
-      <aside>
-        <strong>JobRadar</strong>
-        {/* <div className="option-group">
-          <span className="btn-item" onClick={setTypeDev}>
-            Dev
-          </span>
-          <span className="btn-item" onClick={setTypeJob}>
-            Empresa
-          </span>
-        </div> */}
-        
-        {!insertForm ? <CompanyFormUpdate companyUpdate={companyUpdate} onSubmitUpdate={handleUpdateCompany} changeFormToCreate={changeFormToCreate} /> : <CompanyForm onSubmit={handleAddCompany} /> }
-        
-      </aside>
-      <main>
-        <ul>
-          {companies.map(company => (
-            <CompanyItem key={company._id} changeFormToUpdate={changeFormToUpdate} deleteCompany={deleteCompany} company={company} />
-          ))}
-        </ul>
-      </main>
+    <div>
+      <Header />
+      <div id="app">
+        <aside>
+          <strong>JobRadar</strong>
+          {!insertForm ? <CompanyFormUpdate companyUpdate={companyUpdate} onSubmitUpdate={handleUpdateCompany} changeFormToCreate={changeFormToCreate} /> : <CompanyForm onSubmit={handleAddCompany} /> }
+        </aside>
+        <main>
+          <ul>
+            {companies.map(company => (
+              <CompanyItem key={company._id} changeFormToUpdate={changeFormToUpdate} deleteCompany={deleteCompany} company={company} />
+            ))}
+          </ul>
+        </main>
+      </div>
     </div>
   );
 }
