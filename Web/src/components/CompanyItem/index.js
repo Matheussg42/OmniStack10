@@ -1,14 +1,10 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 import "./styles.css";
 
-function CompanyItem({ company, changeItensToJobs, changeFormToUpdate, deleteCompany }) {
+function CompanyItem({ company, changeFormToUpdate, deleteCompany }) {
 
-  // function showJobs(e) {
-  //   e.preventDefault();
-  //   changeItensToJobs({company});
-  // }
-  
   function updateForm(e) {
     e.preventDefault();
     changeFormToUpdate({company});
@@ -29,9 +25,11 @@ function CompanyItem({ company, changeItensToJobs, changeFormToUpdate, deleteCom
         </div>
       </header>
       <p>{company.desc}</p>
-      <span className="btn" >
-        Vagas
-      </span>
+      <Link className="btn"
+        to={{
+          pathname: `/jobs/${company._id}`,
+        }}
+      >Vagas</Link>
       <div className="btn-group">
         <span className="btn" onClick={updateForm}>
           Editar Cadastro

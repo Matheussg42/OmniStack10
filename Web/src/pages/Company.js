@@ -10,17 +10,20 @@ import "../Main.css";
 import CompanyForm from "../components/CompanyForm/index.js";
 import CompanyFormUpdate from "../components/CompanyFormUpdate/index.js";
 import CompanyItem from "../components/CompanyItem/index.js";
+import CompanyJobs from "../components/CompanyJob/index";
 import Header from "../components/Header/index";
 
 // Componente -> Bloco isolado de HTML, CSS e JS o qual não interfere no restante da aplicação.
 // Propriedade -> Informações que um componente PAI passa para o componente FILHO
 // Estado -> Informações mantidas pelo componente (Lembrar: Imutabilidade)
 
-function App() {
+function Company() {
   const [companies, setCompanies] = useState([]);
   const [insertForm, setInsertForm] = useState(true);
   const [companyUpdate, setCompanyUpdate] = useState([]);
-  
+  const [showJobs, setShowJobs] = useState(false);
+  const [companyToShow, setCompanyToShow] = useState(false);
+
   useEffect(() => {
 
     async function loadCompanies() {
@@ -75,7 +78,6 @@ function App() {
     setCompanies(filtered);
   }
 
-
   return (
     <div>
       <Header />
@@ -86,9 +88,9 @@ function App() {
         </aside>
         <main>
           <ul>
-            {companies.map(company => (
+            content = companies.map(company => (
               <CompanyItem key={company._id} changeFormToUpdate={changeFormToUpdate} deleteCompany={deleteCompany} company={company} />
-            ))}
+            ))
           </ul>
         </main>
       </div>
@@ -96,4 +98,4 @@ function App() {
   );
 }
 
-export default App;
+export default Company;
