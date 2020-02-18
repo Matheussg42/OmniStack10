@@ -17,17 +17,17 @@ mobile/web-build/
 mobile/web-report/
 mobile/.gitignore
 
-web/node_modules/**/*
-web/.pnp
-web/.pnp.js
-web/coverage
-web/build
+Web/node_modules/**/*
+Web/.pnp
+Web/.pnp.js
+Web/coverage
+Web/build
 
-web/.DS_Store
-web/.env.local
-web/.env.development.local
-web/.env.test.local
-web/.env.production.local
-web/npm-debug.log*
-web/yarn-debug.log*
-web/yarn-error.log*
+Web/.DS_Store
+Web/.env.local
+Web/.env.development.local
+Web/.env.test.local
+Web/.env.production.local
+Web/npm-debug.log*
+Web/yarn-debug.log*
+Web/yarn-error.log*
