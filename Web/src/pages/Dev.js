@@ -89,7 +89,8 @@ function Dev() {
           <ul>
             {devs.map(dev => (
               <DevItem key={dev._id} dev={dev} changeFormToUpdate={changeFormToUpdate} deleteUser={deleteUser} />
-              ))}
+              ))
+            }
           </ul>
         </main>
       </div>

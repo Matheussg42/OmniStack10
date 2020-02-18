@@ -17,6 +17,7 @@ mobile/web-build/
 mobile/web-report/
 mobile/.gitignore
 
+Web/node_modules/**/*
 Web/.pnp
 Web/.pnp.js
 Web/coverage

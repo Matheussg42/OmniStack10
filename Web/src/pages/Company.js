@@ -29,6 +29,8 @@ function Company() {
     async function loadCompanies() {
       const response = await api.get("/company");
       
+      console.log(response);
+
       setCompanies(response.data);
     }
     loadCompanies();
@@ -88,9 +90,10 @@ function Company() {
         </aside>
         <main>
           <ul>
-            content = companies.map(company => (
-              <CompanyItem key={company._id} changeFormToUpdate={changeFormToUpdate} deleteCompany={deleteCompany} company={company} />
-            ))
+            {companies.map(company => (
+                <CompanyItem key={company._id} changeFormToUpdate={changeFormToUpdate} deleteCompany={deleteCompany} company={company} />
+              ))
+            }
           </ul>
         </main>
       </div>
