@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 function CompanyFormUpdate({ companyUpdate, onSubmitUpdate, changeFormToCreate }) {
-  console.log(companyUpdate)
   const [_id, set_id] = useState(companyUpdate._id);
   const [name, setName] = useState(companyUpdate.name);
   const [avatar_url, setAvatar_url] = useState(companyUpdate.avatar_url);

@@ -9,13 +9,15 @@ routes.get('/devs', DevController.index);
 routes.get('/devs/:id', DevController.findDev);
 routes.post('/devs', DevController.store);
 routes.post('/devs/:id', DevController.update);
-routes.delete('/devs/:id', DevController.destroy)
+routes.delete('/devs/:id', DevController.destroy);
 
 routes.get('/company', CompanyController.index);
 routes.get('/company/:id', CompanyController.findCompany);
 routes.post('/company', CompanyController.store);
 routes.post('/company/:id', CompanyController.update);
-routes.delete('/company/:id', CompanyController.destroy)
+routes.delete('/company/:id', CompanyController.destroy);
+
+routes.get('/jobs/:id', CompanyController.findJobs);
 
 routes.get('/search', SearchController.index);
 

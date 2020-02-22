@@ -76,6 +76,24 @@ module.exports = {
             return response.send(comp);
         });
     },
+    
+    async findJobs(request, response) {
+        const _id = request.params.id;
+
+        Company.findById(_id, function (err, comp) { 
+            return response.send(comp);
+        });
+    },
+    
+    async addJobs(request, response) {
+        const _id = request.params.id;
+
+        const company = Company.findById(_id, function (err, comp) { 
+            return response.send(comp);
+        });
+
+        console.log(company)
+    },
 
     async destroy(request, response){
         const _id = request.params.id;
