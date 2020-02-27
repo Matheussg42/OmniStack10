@@ -1,4 +1,5 @@
 const Dev = require('../models/Dev');
+const Company = require('../models/Company');
 const parseStringAsArray = require('../utils/parseStringAsArray');
 
 module.exports = {
@@ -20,7 +21,20 @@ module.exports = {
                 }
             }
         });
+        
+        const companies = await Company.find({
+            'jobs.Techs': {$in: techsArray},
+            location:{
+                $near:{
+                    $geometry:{
+                        type: 'Point',
+                        coordinates: [longitude, latitude]
+                    },
+                    $maxDistance:10000
+                }
+            }
+        });
 
-        return response.json({ devs })
+        return response.json({ devs, companies })
     }
 }
