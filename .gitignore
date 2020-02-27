@@ -31,3 +31,5 @@ Web/.env.production.local
 Web/npm-debug.log*
 Web/yarn-debug.log*
 Web/yarn-error.log*
+
+.env
