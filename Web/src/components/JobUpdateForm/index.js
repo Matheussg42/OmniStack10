@@ -1,21 +1,25 @@
 import React, { useState } from "react";
+import parseStringAsArray from '../../utils/parseStringAsArray';
 
-function DevForm({ onSubmit }) {
-  const [title, setTitle] = useState("");
-  const [Desc, setDesc] = useState("");
-  const [Link, setLink] = useState("");
-  const [Techs, setTechs] = useState("");
+function DevForm({ onUpdate, jobToUpdate }) {
+  const [_id, set_id] = useState(jobToUpdate._id);
+  const [title, setTitle] = useState(jobToUpdate.title);
+  const [Desc, setDesc] = useState(jobToUpdate.Desc);
+  const [Link, setLink] = useState(jobToUpdate.Link);
+  const [Techs, setTechs] = useState(jobToUpdate.Techs.join(", "));
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    await onSubmit({
+    await onUpdate({
+      _id,
       title,
       Desc,
       Link,
-      Techs
+      Techs: parseStringAsArray(Techs)
     });
 
+    set_id("");
     setTitle("");
     setTechs("");
     setDesc("");
@@ -24,6 +28,7 @@ function DevForm({ onSubmit }) {
 
   return (
     <form onSubmit={handleSubmit}>
+      <input type="hidden" name="_id" value={_id}/>
       <div className="input-block">
         <label htmlFor="title">Titulo</label>
         <input

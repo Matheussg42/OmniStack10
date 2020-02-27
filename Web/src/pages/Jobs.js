@@ -9,6 +9,8 @@ import "../Main.css";
 import Header from "../components/Header/index";
 import parseStringAsArray from '../utils/parseStringAsArray';
 import JobForm from '../components/JobForm/index';
+import JobUpdateForm from '../components/JobUpdateForm/index';
+import ReplyIcon from '@material-ui/icons/Reply';
 
 // Componente -> Bloco isolado de HTML, CSS e JS o qual não interfere no restante da aplicação.
 // Propriedade -> Informações que um componente PAI passa para o componente FILHO
@@ -16,13 +18,9 @@ import JobForm from '../components/JobForm/index';
 
 function Jobs({match}) {
   const [company, setCompany] = useState({});
+  const [jobToUpdate, setJobToUpdate] = useState({});
   const [insertForm, setInsertForm] = useState(true);
   
-  async function loadJobs(companyId = match.params.id) {
-    const response = await api.get(`/jobs/${companyId}`);
-    setCompany(response.data);
-  }
-
   useEffect(() => {
     loadJobs();
   }, []);
@@ -33,18 +31,54 @@ function Jobs({match}) {
     company.jobs.push(job)
     const jobs = company.jobs;
 
-    const sendJob = {
-      name: company.name,
-      desc: company.desc,
-      avatar_url: company.avatar_url,
-      jobs: jobs,
-      latitude: company.location.coordinates[1],
-      longitude: company.location.coordinates[0]
-    }
+    const sendJob = await getCompanyJobData(company, jobs);
 
     await api.post(`/company/${company._id}`, sendJob);
     loadJobs(company._id);
 
+  }
+
+  async function loadJobs(companyId = match.params.id) {
+    const response = await api.get(`/jobs/${companyId}`);
+    setCompany(response.data);
+  }
+
+  async function updateForm(job){
+    setInsertForm(false);
+    setJobToUpdate(job)
+  }
+
+  async function getCompanyJobData(company, job){
+    return {
+      name: company.name,
+      desc: company.desc,
+      avatar_url: company.avatar_url,
+      jobs: job,
+      latitude: company.location.coordinates[1],
+      longitude: company.location.coordinates[0]
+    }
+  }
+
+  async function onUpdate(data){
+    // console.log(company)
+    const filtered = company.jobs.filter((job) => job._id !== data._id)
+    filtered.push(data);
+    company.jobs = filtered;
+
+    const sendJob = await getCompanyJobData(company, filtered);
+
+    await api.post(`/company/${company._id}`, sendJob);
+    loadJobs(company._id);
+  }
+
+  async function deleteJob(_id){
+    const filtered = company.jobs.filter((job) => job._id !== _id)
+    company.jobs = filtered;
+
+    const sendJob = await getCompanyJobData(company, filtered);
+
+    await api.post(`/company/${company._id}`, sendJob);
+    loadJobs(company._id);
   }
 
   return (
@@ -52,8 +86,8 @@ function Jobs({match}) {
       <Header />
        <div id="app">
         <aside>
-          <strong>JobRadar</strong>
-          {!insertForm ? '' : <JobForm company={company} onSubmit={handleAddJob} /> }
+          <strong><a style={{color: "#666", textDecoration: "none"}} href="/company"><ReplyIcon color="disabled"/> JobRadar</a></strong>
+          {!insertForm ? <JobUpdateForm onUpdate={onUpdate} jobToUpdate={jobToUpdate}/> : <JobForm company={company} onSubmit={handleAddJob} /> }
         </aside>
         <main>
         {Object.keys(company).length > 0 ? (
@@ -65,10 +99,10 @@ function Jobs({match}) {
                 <p>Descrição: {job.Desc}</p><br />
                 <span><a href={job.Link} target="_blank" rel="noopener noreferrer">Acesse para mais informações</a></span><br />
                 <div className="btn-group">
-                  <span className="btn">
+                  <span className="btn " onClick={() => updateForm(job)}>
                     Editar Vaga
                   </span>
-                  <span className="btn delete">
+                  <span className="btn delete" onClick={() => deleteJob(job._id)}>
                     Deletar Vaga
                   </span>
                 </div>
