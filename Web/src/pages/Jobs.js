@@ -60,7 +60,6 @@ function Jobs({match}) {
   }
 
   async function onUpdate(data){
-    // console.log(company)
     const filtered = company.jobs.filter((job) => job._id !== data._id)
     filtered.push(data);
     company.jobs = filtered;

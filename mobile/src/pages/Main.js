@@ -9,6 +9,7 @@ import { connect, disconnect, subscribeToNewDevs, subscribeToUpdateDevs } from '
 
 function Main({ navigation }){
     const [devs, setDevs] = useState([]);
+    const [companies, setCompanies] = useState([]);
     const [currentRegion, setCurrentRegion] = useState(null);
     const [techs, setTechs] = useState('');
 
@@ -75,6 +76,7 @@ function Main({ navigation }){
         });
 
         setDevs(response.data.devs);
+        setCompanies(response.data.companies);
         setupWebsocket();
     }
 
@@ -99,6 +101,19 @@ function Main({ navigation }){
                                 <Text style={styles.devBio}>{dev.bio}</Text>
                                 <Text style={styles.devTechs}>{dev.techs.join(', ')}</Text>
                             </View>
+                        </Callout>
+                    </Marker>
+                ))}
+                {companies.map(company => (
+                    <Marker key={company._id} coordinate={{ latitude: company.location.coordinates[1], longitude: company.location.coordinates[0] }} >
+                        <Image style={styles.CompanyAvatar} source={{ uri: company.avatar_url }} />
+                        <Callout onPress={() => {navigation.navigate('Company', { company: company });}}>
+                            {Object.keys(company.jobs).length > 0 ? company.jobs.map(job => (
+                                <View style={styles.calloutJob} key={job._id}>
+                                    <Text style={styles.jobName}>{job.title}</Text>
+                                    <Text style={styles.jobTechs}>{Object.keys(job.Techs).length > 0 ? job.Techs.join(', ') : ''}</Text>
+                                </View>
+                            )) : null}
                         </Callout>
                     </Marker>
                 ))}
@@ -133,12 +148,26 @@ const styles = StyleSheet.create({
         borderWidth: 4,
         borderColor: '#fff'
     },
+    CompanyAvatar:{
+        width: 54,
+        height: 54,
+        borderRadius: 100,
+        borderWidth: 4,
+        borderColor: '#8E4DFF'
+    },
     callout:{
         width:260
+    },
+    calloutJob:{
+        width:200
     },
     devName:{
         fontWeight: 'bold',
         fontSize: 16
+    },
+    jobName:{
+        fontWeight: 'bold',
+        marginBottom: 0
     },
     devBio:{
         color: "#666",
@@ -146,6 +175,10 @@ const styles = StyleSheet.create({
     },
     devTechs:{
         marginTop: 5
+    },
+
+    jobTechs:{
+        marginBottom: 5
     },
     searchForm: {
         position: 'absolute',

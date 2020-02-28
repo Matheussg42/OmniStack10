@@ -91,8 +91,6 @@ module.exports = {
         const company = Company.findById(_id, function (err, comp) { 
             return response.send(comp);
         });
-
-        console.log(company)
     },
 
     async destroy(request, response){

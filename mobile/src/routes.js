@@ -3,6 +3,8 @@ import { createStackNavigator } from 'react-navigation-stack';
 
 import Main from './pages/Main';
 import Profile from './pages/Profile';
+import JobLink from './pages/JobLink';
+import Company from './pages/Company';
 
 const Routes = createAppContainer(
     createStackNavigator({
@@ -16,6 +18,18 @@ const Routes = createAppContainer(
             screen: Profile,
             navigationOptions:{
                 title: 'Perfil no GitHub'
+            }
+        },
+        JobLink:{
+            screen: JobLink,
+            navigationOptions:{
+                title: 'Link da Vaga'
+            }
+        },
+        Company:{
+            screen: Company,
+            navigationOptions:{
+                title: 'Empresa'
             }
         },
     },{
