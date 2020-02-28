@@ -7,16 +7,18 @@ services:
     volumes:
       - ./Backend/:/usr/app
       - /usr/app/node_modules
+    env_file:
+      - ./.env
     environment:
       BASE_URL: "http://localhost:3333"
-      MONGODB_CONNECTION_STRING: "mongodb+srv://matheus:omnistack@cluster0-9y8nv.mongodb.net/week10?retryWrites=true&w=majority"
+      MONGODB_CONNECTION_STRING: "${MONGODB_CONNECTION_STRING}"
     ports:
       - 3333:3333
   web:
     build:
-      context: ./web/
+      context: ./Web/
     volumes:
-      - ./web/:/usr/app
+      - ./Web/:/usr/app
       - /usr/app/node_modules
     depends_on:
       - backend
