@@ -29,11 +29,6 @@ module.exports = {
                 location
             });
 
-            // const sendSocketMessageTo = findConnections(
-            //     {latitude, longitude}, techsArray
-            // )
-
-            // sendMessage(sendSocketMessageTo, 'new-dev', dev);
         }
 
         return response.json(company);
@@ -62,11 +57,6 @@ module.exports = {
             return response.send(comp);
         })
 
-        // const sendSocketMessageTo = findConnections(
-        //     {latitude, longitude}, techs
-        // )
-
-        // sendMessage(sendSocketMessageTo, 'update-dev', dev);
     },
 
     async findCompany(request, response) {
@@ -79,7 +69,7 @@ module.exports = {
     
     async findJobs(request, response) {
         const _id = request.params.id;
-
+        
         Company.findById(_id, function (err, comp) { 
             return response.send(comp);
         });

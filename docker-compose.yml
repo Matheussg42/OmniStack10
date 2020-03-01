@@ -24,15 +24,3 @@ services:
       - backend
     ports:
       - 3000:3000
-  # mobile:
-  #   build:
-  #     context: ./mobile/
-  #   volumes:
-  #     - ./mobile/:/usr/app
-  #     - /usr/app/node_modules
-  #   depends_on:
-  #     - backend
-  #   ports:
-  #     - 19000:19000
-  #     - 19001:19001
-  #     - 19002:19002
