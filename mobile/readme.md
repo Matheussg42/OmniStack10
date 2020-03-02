@@ -62,7 +62,7 @@ yarn dev
 Ao buscar por uma tecnologia, o aplicativo irá retornar os desenvolvedores e as vagas que possuem a tecnologia buscada. Ao clicar na imagem de um desenvolvedor abrirá o resumo do mesmo, clicando no resumo, é aberta a página do Github. Ao clicar na imagem de uma empresa, será aberto um resumo das vagas, e ao clicar, será aberta uma página com a informação completa da empresa e das vagas daquela empresa.
 
 <p align="center">
-<img src="../.gifs/mobile.gif" style='width: 300px'>
+<img src="../.gifs/mobile.gif" style='width: 200px'>
 </p>
 
 #### WebSocket
@@ -70,7 +70,7 @@ Ao buscar por uma tecnologia, o aplicativo irá retornar os desenvolvedores e as
 O projeto foi criar com WebSocket para o Desenvolvedor. Ao pesquisar por uma tecnologia, o Socket.io começa a escutar, e ao Cadastrar ou Atualizar um desenvolvedor, ele é atualizado automaticamente no aplicativo.
 
 <p align="center">
-<img src="../.gifs/mobile_socket.gif" style='width: 300px'>
+<img src="../.gifs/mobile_socket.gif" style='width: 200px'>
 </p>
 
 
