@@ -42,7 +42,7 @@ yarn dev
 
 ## Funcionalidades
 
-GIF completo.
+
 ![](../.gifs/web.gif)
 
 #### Desenvolvedor

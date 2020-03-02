@@ -2,7 +2,7 @@
 <p align="center">Matheus S. Gomes - <a target="_blank" href="https://matheus.sgomes.dev">https://matheus.sgomes.dev</a></p>
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/Matheussg42/OmniStack10/master/Web/src/assets/logo.png" style='width: 300px'></a>
+<img src="https://raw.githubusercontent.com/Matheussg42/OmniStack10/master/Web/src/assets/logo.png" style='width: 300px'>
 </p>
 
 
@@ -61,13 +61,17 @@ yarn dev
 
 Ao buscar por uma tecnologia, o aplicativo irá retornar os desenvolvedores e as vagas que possuem a tecnologia buscada. Ao clicar na imagem de um desenvolvedor abrirá o resumo do mesmo, clicando no resumo, é aberta a página do Github. Ao clicar na imagem de uma empresa, será aberto um resumo das vagas, e ao clicar, será aberta uma página com a informação completa da empresa e das vagas daquela empresa.
 
-![](../.gifs/mobile.gif)
+<p align="center">
+<img src="../.gifs/mobile.gif" style='width: 300px'>
+</p>
 
 #### WebSocket
 
 O projeto foi criar com WebSocket para o Desenvolvedor. Ao pesquisar por uma tecnologia, o Socket.io começa a escutar, e ao Cadastrar ou Atualizar um desenvolvedor, ele é atualizado automaticamente no aplicativo.
 
-![](../.gifs/mobile_socket.gif)
+<p align="center">
+<img src="../.gifs/mobile_socket.gif" style='width: 300px'>
+</p>
 
 
 ### Outras Pastas
