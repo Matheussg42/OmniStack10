@@ -1,68 +1,64 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p align="center"><a target="_blank" href="https://matheus.sgomes.dev"><img src="https://matheus.sgomes.dev/img/logo_azul.png"></a></p>
+<p align="center">Matheus S. Gomes - <a target="_blank" href="https://matheus.sgomes.dev">https://matheus.sgomes.dev</a></p>
 
-## Available Scripts
+<p align="center">
+<img src="https://raw.githubusercontent.com/Matheussg42/OmniStack10/master/Web/src/assets/logo.png" style='width: 300px'></a>
+</p>
 
-In the project directory, you can run:
 
-### `yarn start`
+## O projeto _DevRadar_, foi criado durante a semana Omnistack da [Rocketseat](https://rocketseat.com.br)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Este projeto tem o intuito de criar um sistema com Back-End, Front-End e Mobile utilizando _NodeJS, ReactJS e React-Native_ respectivamente.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Para iniciar a aplicação Web(Back e Front), acesse a raiz do projeto e execute o comando do Docker-Compose(Necessário Docker e Docker-compose):
 
-### `yarn test`
+```docker
+docker-compose up
+```
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Front-end
 
-### `yarn build`
+O Front-end do projeto é responsável por exibir as páginas de Cadastro e Edição dos Desenvolvedores e Empresa(Vagas), além de enviar as interações para o Back-End.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Instalando dependências
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+Acesse a raiz da pasta `Web` pelo _terminal_, e instale as dependências usando o comando `yarn`, ou `npm`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```js
+yarn install
+```
 
-### `yarn eject`
+```js
+npm install
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+#### Subindo a aplicação
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Acesse a raiz da pasta `Web` pelo _terminal_, digite o comando `yarn start`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```js
+yarn dev
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Funcionalidades
 
-## Learn More
+GIF completo.
+![](../.gifs/web.gif)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Desenvolvedor
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Cadastro, Edição e Remoção de Desenvolvedores.
 
-### Code Splitting
+![](../.gifs/web_dev.gif)
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+#### Empresa
 
-### Analyzing the Bundle Size
+Cadastro, Edição e Remoção de Empresas e Cadastro, Edição e Remoção de Vagas das empresas.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+![](../.gifs/web_company.gif)
 
-### Making a Progressive Web App
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+### Outras Pastas
 
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+- [Back-end](/Backend)
+- [Mobile](/mobile)
